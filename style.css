@@ -1,0 +1,151 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+    'Helvetica Neue';
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: white transparent;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  place-content: center;
+  background-color: #000;
+  overflow: hidden;
+}
+
+.container {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  perspective: 500px;
+  transform-style: preserve-3d;
+  transform: rotateX(60deg);
+
+  @media (width <= 888px) {
+    top: 50%;
+  }
+
+  .box {
+    transform-style: preserve-3d;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vw;
+    border: 10vmax solid #222;
+    box-shadow: 0 0 0 0.5vw #e9e9e9, 0 0 0 0.5vw #e9e9e9 inset;
+    background-color: #000;
+    animation: rotar 18s linear infinite;
+
+    .linter {
+      position: absolute;
+    }
+
+    .left {
+      left: -7.5vmax;
+      top: -8vmax;
+      width: 1.5vmax;
+      height: 95vw;
+      background-image: linear-gradient(to top, yellow, springgreen, skyblue);
+      transform-origin: bottom;
+      animation: crecerY 2s linear both;
+    }
+
+    .top {
+      left: -7.5vmax;
+      top: -8vmax;
+      height: 1.5vmax;
+      width: 95vw;
+      background-image: linear-gradient(
+        to right,
+        yellow,
+        springgreen,
+        skyblue
+      );
+      transform-origin: left;
+      animation: crecerX 2s linear both;
+      animation-delay: 2s;
+    }
+    .right {
+      right: -7.5vmax;
+      top: -8vmax;
+      width: 1.5vmax;
+      height: 95vw;
+      transform-origin: top;
+      background-image: linear-gradient(
+        to bottom,
+        yellow,
+        springgreen,
+        skyblue
+      );
+      animation: crecerY 6s linear both;
+      animation-delay: 4s;
+    }
+
+    .bottom {
+      left: -7.5vmax;
+      bottom: -8vmax;
+      height: 1.5vmax;
+      width: 95vw;
+      transform-origin: right;
+      background-image: linear-gradient(
+        to left,
+        yellow,
+        springgreen,
+        skyblue
+      );
+      animation: crecerX 4s linear both;
+      animation-delay: 10s;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -5.5vmax;
+      border: 0.5vw dashed #e9e9e9;
+    }
+  }
+}
+
+@keyframes rotar {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes crecerY {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes crecerX {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
